@@ -16,14 +16,6 @@ Thumbs.db
 *.swp
 *.swo
 
-# Go Related
-/bin/
-/pkg/
-/vendor/
-*.mod
-*.sum
-*.db
-*.log
 
 # Secrets
 .env
