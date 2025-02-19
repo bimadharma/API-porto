@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"project-porto/domain"
 	"project-porto/internal/api"
 	"project-porto/internal/config"
@@ -37,5 +38,10 @@ func main() {
 	app := fiber.New()
 	routes.SetupRoutes(app, projectHandler, certificateHandler, feedbackHandler)
 
-	app.Listen(":9000")
+	port := os.Getenv("PORT") // Railway akan menetapkan port secara otomatis
+	if port == "" {
+	port = "9000" 
+	}
+	app.Listen(":" + port)
+
 }
