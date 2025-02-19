@@ -10,14 +10,14 @@ func SetupRoutes(app *fiber.App, projectHandler *api.ProjectHandler, certificate
 	api := app.Group("/api")
 
 	// Endpoint Project
-	api.Post("/projects", projectHandler.CreateProject)
+	api.Post("/projects/update", projectHandler.CreateProject)
 	api.Get("/projects", projectHandler.GetAllProjects)
 
 	// Endpoint Certificate
-	api.Post("/certificates", certificateHandler.CreateCertificate)
+	api.Post("/certificates/update", certificateHandler.CreateCertificate)
 	api.Get("/certificates", certificateHandler.GetAllCertificates)
 
 	// Endpoint Feedback
-	api.Post("/feedbacks", feedbackHandler.CreateFeedback)
+	api.Post("/feedbacks/update", feedbackHandler.CreateFeedback)
 	api.Get("/feedbacks", feedbackHandler.GetAllFeedbacks)
 }
