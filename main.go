@@ -11,6 +11,7 @@ import (
 	"project-porto/internal/service"
 
 	"github.com/gofiber/fiber/v2"
+	"github.com/gofiber/fiber/v2/middleware/cors"
 )
 
 func main() {
@@ -36,12 +37,19 @@ func main() {
 	feedbackHandler := api.NewFeedbackHandler(feedbackService)
 
 	app := fiber.New()
+
+	// Tambahkan Middleware CORS
+	app.Use(cors.New(cors.Config{
+		AllowOrigins: "*",
+		AllowMethods: "GET,POST,PUT,DELETE",
+		AllowHeaders: "Content-Type, Authorization",
+	}))
+
 	routes.SetupRoutes(app, projectHandler, certificateHandler, feedbackHandler)
 
-	port := os.Getenv("PORT") // Railway akan menetapkan port secara otomatis
+	port := os.Getenv("PORT") 
 	if port == "" {
-	port = "9000" 
+		port = "9000"
 	}
 	app.Listen(":" + port)
-
 }
